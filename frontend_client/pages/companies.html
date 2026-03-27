@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Companies - Campus Sarthi</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .placement-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .placement-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .placement-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .filters-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .filter-group select, .filter-group input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .company-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .company-card.eligible {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .company-card.not-eligible {
+            border-left: 4px solid #f44336;
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        .company-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .company-info .industry {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.25rem 0 0 0;
+        }
+
+        .package-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .eligibility-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .badge-eligible {
+            background: #e8f5e9;
+            color: #4CAF50;
+        }
+
+        .badge-not-eligible {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .company-details {
+            margin: 1rem 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .detail-item i {
+            width: 20px;
+            color: #667eea;
+        }
+
+        .skills-required {
+            margin: 1rem 0;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #f0f0f0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .skill-tag.mandatory {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .skill-tag.preferred {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .deadline {
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: #fff3e0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .deadline.urgent {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .view-details {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .apply-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            grid-column: 1 / -1;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #f44336;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">Project</div>
+                <div class="campus-badge">Placements</div>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="companies.html" class="nav-link active"><i class="fas fa-building"></i> Companies</a></li>
+                    <li><a href="analytics.html" class="nav-link"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="#" onclick="logout()" class="nav-link logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-welcome" id="userWelcome">
+                <i class="fas fa-user-circle"></i>
+                <span>Loading...</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="placement-header">
+        <div class="container">
+            <h1><i class="fas fa-briefcase"></i> Placement Opportunities</h1>
+            <p>Find your dream company and check your eligibility</p>
+        </div>
+    </section>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <div class="stats-section" id="statsSection">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalCompanies">0</div>
+                    <div class="stat-label">Total Companies</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="eligibleCompanies">0</div>
+                    <div class="stat-label">You're Eligible</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="appliedCount">0</div>
+                    <div class="stat-label">Applied</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="shortlistedCount">0</div>
+                    <div class="stat-label">Shortlisted</div>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <h3><i class="fas fa-filter"></i> Filter Companies</h3>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>Status</label>
+                        <select id="statusFilter">
+                            <option value="all">All Companies</option>
+                            <option value="open">Open for Applications</option>
+                            <option value="upcoming">Upcoming</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Eligibility</label>
+                        <select id="eligibilityFilter">
+                            <option value="all">All Companies</option>
+                            <option value="eligible">Show Only Eligible</option>
+                            <option value="not-eligible">Show Only Not Eligible</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Minimum Package (LPA)</label>
+                        <input type="number" id="packageFilter" placeholder="Min package" min="0" step="0.5">
+                    </div>
+                    <div class="filter-group">
+                        <label>Branch</label>
+                        <select id="branchFilter">
+                            <option value="all">All Branches</option>
+                            <option value="CSE">Computer Science</option>
+                            <option value="ECE">Electronics</option>
+                            <option value="ME">Mechanical</option>
+                            <option value="CE">Civil</option>
+                            <option value="EE">Electrical</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button class="btn-primary" onclick="applyFilters()">
+                        <i class="fas fa-search"></i> Apply Filters
+                    </button>
+                    <button class="btn-secondary" onclick="resetFilters()">
+                        <i class="fas fa-undo"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <div id="companiesGrid" class="companies-grid">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Loading companies...
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>&copy;Campus Sarthi. All rights reserved. | Placement Support System</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/api.js"></script>
+    <script>
+        let allCompanies = [];
+        let studentProfile = null;
+        let currentUser = null;
+
+        // Check authentication
+        if (!isAuthenticated()) {
+            window.location.href = 'login.html';
+        }
+
+        // Load user data
+        currentUser = getCurrentUser();
+        document.querySelector('#userWelcome span').textContent = currentUser.name;
+
+        // Load companies and student profile
+        async function loadData() {
+            try {
+                // Fetch companies
+                const response = await fetch('http://localhost:5000/api/placement/companies');
+                allCompanies = await response.json();
+                
+                // Fetch student profile (you'll need to create this endpoint)
+                // For now, using mock data
+                studentProfile = {
+                    cgpa: 8.5,
+                    branch: 'CSE',
+                    backlogs: 0,
+                    skills: ['JavaScript', 'React', 'Node.js', 'Python'],
+                    appliedCompanies: []
+                };
+                
+                updateStats();
+                displayCompanies(allCompanies);
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('companiesGrid').innerHTML = 
+                    '<div class="error-message">Failed to load companies. Please try again.</div>';
+            }
+        }
+
+        // Check eligibility for a company
+        function checkEligibility(company) {
+            if (!studentProfile) return false;
+            
+            const cgpaOk = studentProfile.cgpa >= (company.eligibility?.minCgpa || 0);
+            const branchOk = company.eligibility?.allowedBranches?.includes(studentProfile.branch) || 
+                           company.eligibility?.allowedBranches?.includes('ALL');
+            const backlogOk = studentProfile.backlogs <= (company.eligibility?.maxBacklogs || 0);
+            
+            return cgpaOk && branchOk && backlogOk;
+        }
+
+        // Update statistics
+        function updateStats() {
+            const eligible = allCompanies.filter(c => checkEligibility(c)).length;
+            const applied = studentProfile?.appliedCompanies?.length || 0;
+            
+            document.getElementById('totalCompanies').textContent = allCompanies.length;
+            document.getElementById('eligibleCompanies').textContent = eligible;
+            document.getElementById('appliedCount').textContent = applied;
+            document.getElementById('shortlistedCount').textContent = '0'; // Update with actual data
+        }
+
+        // Display companies
+        function displayCompanies(companies) {
+            const grid = document.getElementById('companiesGrid');
+            
+            if (companies.length === 0) {
+                grid.innerHTML = '<div class="no-data">No companies found matching your criteria</div>';
+                return;
+            }
+            
+            grid.innerHTML = companies.map(company => {
+                const isEligible = checkEligibility(company);
+                const hasApplied = studentProfile?.appliedCompanies?.some(
+                    a => a.companyId === company._id
+                );
+                
+                return `
+                    <div class="company-card ${isEligible ? 'eligible' : 'not-eligible'}">
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="company-info">
+                                <h3>${company.name}</h3>
+                                <p class="industry">${company.industry || 'Technology'}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="eligibility-badge ${isEligible ? 'badge-eligible' : 'badge-not-eligible'}">
+                            ${isEligible ? '✅ You are eligible' : '❌ Not eligible'}
+                        </div>
+                        
+                        <div class="package-tag">
+                            ₹${company.package?.min || 0} - ${company.package?.max || 0} LPA
+                        </div>
+                        
+                        <div class="company-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${company.location || 'Multiple Locations'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>CGPA: ${company.eligibility?.minCgpa || 0}+</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>Branches: ${company.eligibility?.allowedBranches?.join(', ') || 'All'}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skills-required">
+                            <strong>Key Skills:</strong>
+                            <div class="skill-tags">
+                                ${company.skillsRequired?.slice(0, 4).map(skill => `
+                                    <span class="skill-tag ${skill.importance}">${skill.skill}</span>
+                                `).join('')}
+                                ${company.skillsRequired?.length > 4 ? `<span class="skill-tag">+${company.skillsRequired.length - 4} more</span>` : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="deadline ${new Date(company.registrationDeadline) < new Date(Date.now() + 86400000 * 3) ? 'urgent' : ''}">
+                            <i class="fas fa-clock"></i>
+                            Deadline: ${new Date(company.registrationDeadline).toLocaleDateString()}
+                        </div>
+                        
+                        <div class="card-footer">
+                            <a href="company-details.html?id=${company._id}" class="view-details">
+                                View Details <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <button class="apply-btn" 
+                                    ${!isEligible || hasApplied ? 'disabled' : ''}
+                                    onclick="applyToCompany('${company._id}')">
+                                ${hasApplied ? 'Applied' : 'Apply Now'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Apply to company
+        async function applyToCompany(companyId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/placement/companies/${companyId}/apply`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': localStorage.getItem('token')
+                    }
+                });
+                
+                if (response.ok) {
+                    alert('Application submitted successfully!');
+                    loadData(); // Reload data
+                } else {
+                    const data = await response.json();
+                    alert(data.message || 'Failed to apply');
+                }
+            } catch (error) {
+                console.error('Error applying:', error);
+                alert('Failed to apply. Please try again.');
+            }
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const status = document.getElementById('statusFilter').value;
+            const eligibility = document.getElementById('eligibilityFilter').value;
+            const minPackage = parseFloat(document.getElementById('packageFilter').value) || 0;
+            const branch = document.getElementById('branchFilter').value;
+            
+            let filtered = [...allCompanies];
+            
+            // Filter by status
+            if (status !== 'all') {
+                filtered = filtered.filter(c => c.status === status);
+            }
+            
+            // Filter by eligibility
+            if (eligibility !== 'all') {
+                filtered = filtered.filter(c => 
+                    eligibility === 'eligible' ? checkEligibility(c) : !checkEligibility(c)
+                );
+            }
+            
+            // Filter by package
+            if (minPackage > 0) {
+                filtered = filtered.filter(c => (c.package?.min || 0) >= minPackage);
+            }
+            
+            // Filter by branch
+            if (branch !== 'all') {
+                filtered = filtered.filter(c => 
+                    c.eligibility?.allowedBranches?.includes(branch) || 
+                    c.eligibility?.allowedBranches?.includes('ALL')
+                );
+            }
+            
+            displayCompanies(filtered);
+        }
+
+        // Reset filters
+        function resetFilters() {
+            document.getElementById('statusFilter').value = 'all';
+            document.getElementById('eligibilityFilter').value = 'all';
+            document.getElementById('packageFilter').value = '';
+            document.getElementById('branchFilter').value = 'all';
+            displayCompanies(allCompanies);
+        }
+
+        // Load data on page load
+        loadData();
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>
