@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Dashboard - Campus Sarthi</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="faculty-header-enhanced">
+    <div class="header-content">
+      <div class="logo-section">
+        <div class="logo">Project</div>
+        <div class="campus-badge">Faculty Portal</div>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#" id="contactAdminBtn" class="nav-link"><i class="fas fa-envelope"></i> Contact Admin</a></li>
+          <li><a href="login.html" class="nav-link logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </nav>
+
+      <div class="faculty-profile-header">
+        <div class="search-box">
+          <input type="text" id="studentSearch" placeholder="Search students...">
+          <button onclick="searchStudents()"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="profile-card">
+          <div class="faculty-avatar">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=rajesh" alt="Faculty Avatar">
+            <div class="online-status"></div>
+          </div>
+          <div class="profile-info">
+            <div class="faculty-name">Dr. Rajesh Sharma</div>
+            <div class="faculty-details">
+              <span class="faculty-id">FAC12345</span>
+              <span class="department">Computer Science</span>
+            </div>
+          </div>
+          <div class="quick-stats">
+            <div class="stat">
+              <div class="stat-value" id="pendingCount">3</div>
+              <div class="stat-label">Pending Reviews</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" id="approvedCount">12</div>
+              <div class="stat-label">Verified</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="progress-overview">
+    <div class="container">
+      <div class="progress-grid">
+        <div class="progress-card">
+          <div class="progress-icon">
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <div class="progress-content">
+            <h3>Profile Verification</h3>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 60%"></div>
+            </div>
+            <span class="progress-text">3/5 Profiles Checked</span>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <div class="progress-icon attendance">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <div class="progress-content">
+            <h3>Attendance Today</h3>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%"></div>
+            </div>
+            <span class="progress-text">42/50 Students</span>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <div class="progress-icon reports">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <div class="progress-content">
+            <h3>Reports Generated</h3>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 30%"></div>
+            </div>
+            <span class="progress-text">6/20 This Month</span>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <div class="progress-icon requests">
+            <i class="fas fa-comments"></i>
+          </div>
+          <div class="progress-content">
+            <h3>Student Requests</h3>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 75%"></div>
+            </div>
+            <span class="progress-text">3/4 Resolved</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="faculty-dashboard-enhanced">
+    <div class="container">
+      <section class="quick-actions-section">
+        <h2 class="section-title">Faculty Actions</h2>
+        <div class="actions-grid">
+          <div class="action-card" onclick="toggleVerificationSection()">
+            <div class="action-icon">
+              <i class="fas fa-user-check"></i>
+            </div>
+            <div class="action-content">
+              <h3>Profile Verification</h3>
+              <p>Review and approve student placement profiles</p>
+              <span class="action-badge" id="pendingBadge">3 Pending</span>
+            </div>
+            <div class="action-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+
+          <div class="action-card" onclick="toggleSmartAttendance()">
+            <div class="action-icon">
+              <i class="fas fa-camera"></i>
+            </div>
+            <div class="action-content">
+              <h3>Smart Attendance</h3>
+              <p>Mark attendance using face recognition</p>
+              <span class="action-badge">AI Powered</span>
+            </div>
+            <div class="action-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+
+          <div class="action-card" onclick="toggleReportSection()">
+            <div class="action-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="action-content">
+              <h3>Generate Reports</h3>
+              <p>Create detailed student analytics reports</p>
+              <span class="action-badge">Excel/PDF</span>
+            </div>
+            <div class="action-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+
+          <div class="action-card" onclick="showStudentRequests()">
+            <div class="action-icon">
+              <i class="fas fa-comment-dots"></i>
+            </div>
+            <div class="action-content">
+              <h3>Student Requests</h3>
+              <p>View and respond to student queries</p>
+              <span class="action-badge" id="requestsBadge">2 New</span>
+            </div>
+            <div class="action-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="dashboard-columns">
+        <div class="column-left">
+          <section class="verification-section-enhanced" id="verificationSection">
+            <div class="section-header">
+              <h2><i class="fas fa-file-signature"></i> Profile Verification Queue</h2>
+              <div class="section-actions">
+                <button class="filter-btn active" onclick="filterCertificates('all')">All</button>
+                <button class="filter-btn" onclick="filterCertificates('pending')">Pending</button>
+                <button class="filter-btn" onclick="filterCertificates('approved')">Approved</button>
+              </div>
+            </div>
+            <div class="verification-list-enhanced" id="verificationList">
+              </div>
+          </section>
+
+          <section class="attendance-section" id="attendanceSection" style="display: none;">
+            <div class="section-header">
+              <h2><i class="fas fa-camera"></i> Smart Attendance System</h2>
+              <div class="attendance-actions">
+                <button class="attendance-btn primary" onclick="startCamera()">
+                  <i class="fas fa-camera"></i> Start Camera
+                </button>
+                <button class="attendance-btn secondary" onclick="uploadClassPhoto()">
+                  <i class="fas fa-upload"></i> Upload Photo
+                </button>
+              </div>
+            </div>
+
+            <div class="attendance-interface">
+              <div class="camera-container" id="cameraContainer">
+                <div class="camera-placeholder">
+                  <i class="fas fa-camera"></i>
+                  <p>Camera feed will appear here</p>
+                  <button class="camera-start-btn" onclick="startCamera()">Start Camera</button>
+                </div>
+                <video id="cameraFeed" style="display: none;"></video>
+                <canvas id="captureCanvas" style="display: none;"></canvas>
+              </div>
+
+              <div class="attendance-controls">
+                <button class="capture-btn" onclick="capturePhoto()" style="display: none;">
+                  <i class="fas fa-camera"></i> Capture Photo
+                </button>
+                <button class="process-btn" onclick="processAttendance()" style="display: none;">
+                  <i class="fas fa-brain"></i> Process Attendance
+                </button>
+              </div>
+
+              <div class="attendance-results" id="attendanceResults">
+                <h3>Attendance Results</h3>
+                <div class="results-list" id="resultsList">
+                  <p>No attendance data yet. Capture or upload a class photo to begin.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="column-right">
+          <section class="report-section-enhanced" id="reportSection">
+            <div class="section-header">
+              <h2><i class="fas fa-chart-bar"></i> Generate Student Report</h2>
+            </div>
+            
+            <div class="report-filters-enhanced">
+              <div class="filter-row">
+                <div class="filter-group">
+                  <label for="branchFilter"><i class="fas fa-code-branch"></i> Branch:</label>
+                  <select id="branchFilter">
+                    <option value="">All Branches</option>
+                    <option value="cse">Computer Science</option>
+                    <option value="it">Information Technology</option>
+                    <option value="mech">Mechanical</option>
+                    <option value="civil">Civil</option>
+                    <option value="ece">Electronics</option>
+                  </select>
+                </div>
+                <div class="filter-group">
+                  <label for="departmentFilter"><i class="fas fa-building"></i> Department:</label>
+                  <select id="departmentFilter">
+                    <option value="">All Departments</option>
+                    <option value="first">First Year</option>
+                    <option value="second">Second Year</option>
+                    <option value="third">Third Year</option>
+                    <option value="final">Final Year</option>
+                  </select>
+                </div>
+              </div>
+              <div class="filter-row">
+                <div class="filter-group">
+                  <label for="skillFilter"><i class="fas fa-tools"></i> Skill Set:</label>
+                  <select id="skillFilter">
+                    <option value="">All Skills</option>
+                    <option value="programming">Programming</option>
+                    <option value="technical">Core Technical</option>
+                    <option value="aptitude">Aptitude</option>
+                    <option value="communication">Communication</option>
+                    <option value="leadership">Leadership</option>
+                  </select>
+                </div>
+                <div class="filter-group">
+                  <label for="dateFilter"><i class="fas fa-calendar"></i> Date Range:</label>
+                  <select id="dateFilter">
+                    <option value="all">All Time</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="quarter">This Quarter</option>
+                  </select>
+                </div>
+              </div>
+              <button class="generate-report-btn-enhanced" onclick="generateReport()">
+                <i class="fas fa-download"></i> Generate Report (Excel/PDF)
+              </button>
+            </div>
+
+            <div class="report-preview-enhanced" id="reportPreview">
+              <div class="preview-header">
+                <h3>Report Preview</h3>
+                <span class="preview-info">Configure filters and generate report</span>
+              </div>
+              <div class="preview-content">
+                <p>Select report criteria and generate to view preview data.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="stats-card">
+            <h2>Today's Overview</h2>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-value">85%</div>
+                <div class="stat-label">Attendance</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Pending Reviews</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">2</div>
+                <div class="stat-label">Requests</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">1</div>
+                <div class="stat-label">Reports</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="faculty-footer-enhanced">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>✅ Recently Verified Profiles</h3>
+          <div class="approved-list-enhanced" id="approvedCertificates">
+            </div>
+        </div>
+        <div class="footer-section">
+          <h3>📝 Student Requests & Queries</h3>
+          <div class="requests-list-enhanced" id="studentRequests">
+            </div>
+        </div>
+        <div class="footer-section">
+          <h3>📊 Quick Actions</h3>
+          <div class="quick-actions">
+            <button class="footer-btn" onclick="toggleVerificationSection()">
+              <i class="fas fa-user-check"></i> Verify Profiles
+            </button>
+            <button class="footer-btn" onclick="toggleSmartAttendance()">
+              <i class="fas fa-camera"></i> Take Attendance
+            </button>
+            <button class="footer-btn" onclick="toggleReportSection()">
+              <i class="fas fa-file-export"></i> Export Report
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="contactAdminModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-envelope"></i> Contact Administration</h3>
+        <span class="close">&times;</span>
+      </div>
+      <form id="contactAdminForm" class="modal-form">
+        <div class="form-group">
+          <label for="contactSubject">Subject:</label>
+          <input type="text" id="contactSubject" required>
+        </div>
+        <div class="form-group">
+          <label for="contactMessage">Message:</label>
+          <textarea id="contactMessage" rows="5" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-upload"></i> Upload Class Photo</h3>
+        <span class="close" onclick="closeUploadModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="upload-area" id="classPhotoUpload">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Drag & drop class photo here or click to browse</p>
+          <input type="file" id="classPhoto" accept="image/*" style="display: none;">
+          <button class="browse-btn" onclick="document.getElementById('classPhoto').click()">Browse Files</button>
+        </div>
+        <div class="upload-tips">
+          <p><i class="fas fa-info-circle"></i> Supported formats: JPG, PNG, WebP</p>
+          <p><i class="fas fa-lightbulb"></i> Tip: Use clear, well-lit class photos for better recognition</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

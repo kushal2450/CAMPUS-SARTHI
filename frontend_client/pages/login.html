@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Portal</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Enhanced Header -->
+  <header class="login-header-enhanced">
+    <div class="header-content">
+      <div class="logo-section">
+        <div class="logo">Project</div>
+        <div class="campus-badge">Secure Login</div>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#" class="nav-link" onclick="showHelp()"><i class="fas fa-question-circle"></i> Help</a></li>
+          <li><a href="#" class="nav-link" onclick="showContact()"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Login Hero Section -->
+  <section class="login-hero">
+    <div class="login-hero-content">
+      <h1>Welcome Back!</h1>
+      <p>Access your campus portal with secure authentication</p>
+      <div class="login-stats">
+        <div class="login-stat">
+          <i class="fas fa-shield-alt"></i>
+          <span>Secure Login</span>
+        </div>
+        <div class="login-stat">
+          <i class="fas fa-bolt"></i>
+          <span>Instant Access</span>
+        </div>
+        <div class="login-stat">
+          <i class="fas fa-users"></i>
+          <span>Multi-User Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login Form Section -->
+  <main class="login-main-enhanced">
+    <div class="login-container-enhanced">
+      <div class="login-card">
+        <div class="login-header">
+          <h2><i class="fas fa-sign-in-alt"></i> Portal Login</h2>
+          <p>Select your role and enter credentials</p>
+        </div>
+
+        <form id="loginForm" class="login-form-enhanced">
+          <!-- User Type Selection -->
+          <div class="form-group">
+            <label for="userType" class="form-label">
+              <i class="fas fa-user-tag"></i> User Type
+            </label>
+            <div class="select-container">
+              <select id="userType" name="userType" required class="form-select">
+                <option value="">-- Select User Type --</option>
+                <option value="student">🎓 Student</option>
+                <option value="faculty">👨‍🏫 Faculty</option>
+                <option value="visitor">👔 External Verifier</option>
+              </select>
+              <i class="fas fa-chevron-down select-arrow"></i>
+            </div>
+          </div>
+
+          <!-- Domain Selection (Faculty Only) -->
+          <div id="domainSection" class="form-group hidden">
+            <label for="domain" class="form-label">
+              <i class="fas fa-layer-group"></i> Domain
+            </label>
+            <div class="select-container">
+              <select id="domain" name="domain" class="form-select">
+                <option value="">-- Select Domain --</option>
+                <option value="sports">🏃 Sports</option>
+                <option value="clubs">👥 Clubs Community</option>
+                <option value="technical">💻 Technical</option>
+              </select>
+              <i class="fas fa-chevron-down select-arrow"></i>
+            </div>
+          </div>
+
+          <!-- Subdomain Selection (Faculty Only) -->
+          <div id="subDomainSection" class="form-group hidden">
+            <label for="subdomain" class="form-label">
+              <i class="fas fa-sitemap"></i> Subdomain
+            </label>
+            <div class="select-container">
+              <select id="subdomain" name="subdomain" class="form-select">
+                <option value="">-- Select Subdomain --</option>
+              </select>
+              <i class="fas fa-chevron-down select-arrow"></i>
+            </div>
+          </div>
+
+          <!-- Username -->
+          <div class="form-group">
+            <label for="username" class="form-label">
+              <i class="fas fa-user"></i> Username
+            </label>
+            <div class="input-container">
+              <input type="text" id="username" name="username" required class="form-input" placeholder="Enter your username">
+              <i class="fas fa-user input-icon"></i>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password" class="form-label">
+              <i class="fas fa-lock"></i> Password
+            </label>
+            <div class="input-container">
+              <input type="password" id="password" name="password" required class="form-input" placeholder="Enter your password">
+              <i class="fas fa-lock input-icon"></i>
+              <button type="button" class="password-toggle" onclick="togglePassword()">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="login-btn">
+            <span>Sign In</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+                    <!-- Add this after the submit button -->
+          <div class="register-link" style="text-align: center; margin-top: 1rem;">
+              New user? <a href="register.html">Create an account</a>
+          </div>
+        </form>
+
+        <div class="login-footer">
+          <div class="role-previews">
+            <div class="role-preview">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Student Portal</span>
+            </div>
+            <div class="role-preview">
+              <i class="fas fa-chalkboard-teacher"></i>
+              <span>Faculty Dashboard</span>
+            </div>
+            <div class="role-preview">
+              <i class="fas fa-briefcase"></i>
+              <span>Recruiter Access</span>
+            </div>
+          </div>
+          <p class="support-text">
+            Need help? <a href="#" onclick="showHelp()">Contact support</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Login Graphics -->
+      <div class="login-graphics">
+        <div class="graphic-item">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Secure Access</h3>
+          <p>Enterprise-grade security for all user data</p>
+        </div>
+        <div class="graphic-item">
+          <i class="fas fa-rocket"></i>
+          <h3>Fast Performance</h3>
+          <p>Lightning-fast portal access and navigation</p>
+        </div>
+        <div class="graphic-item">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Responsive Design</h3>
+          <p>Optimized for all devices and screen sizes</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Enhanced Footer -->
+  <footer class="login-footer-enhanced">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Quick Access</h3>
+          <ul>
+            <li><a href="index.html">Home Portal</a></li>
+            <li><a href="#">Password Reset</a></li>
+            <li><a href="#">System Status</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#" onclick="showHelp()">Login Help</a></li>
+            <li><a href="#">User Guide</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Security</h3>
+          <div class="security-info">
+            <p><i class="fas fa-lock"></i> SSL Encrypted</p>
+            <p><i class="fas fa-shield-alt"></i> Secure Authentication</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy;Campus Sarthi. All rights reserved. | Secure Authentication System</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+<script src="../assets/js/api.js"></script>
+<script>
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const userType = document.getElementById('userType').value;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        // For testing, use a simple email format
+        // In a real app, you'd have a proper email field
+        const email = username.includes('@') ? username : `${username}@campus.edu`;
+        
+        console.log('Login attempt:', { email, userType });
+        
+        // Show loading state
+        const submitBtn = document.querySelector('.login-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+        submitBtn.disabled = true;
+        
+        try {
+            const data = await login(email, password);
+            console.log('Login response:', data);
+            
+            alert('Login successful! Redirecting...');
+            
+            // Redirect based on user role
+            if (data.user.role === 'student') {
+                window.location.href = 'student-dashboard.html';
+            } else if (data.user.role === 'faculty') {
+                window.location.href = 'faculty-dashboard.html';
+            } else if (data.user.role === 'recruiter') {
+                window.location.href = 'recruiter-dashboard.html';
+            } else {
+                window.location.href = 'dashboard.html';
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            alert('Login failed: ' + error.message);
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // ... rest of your existing code ...
+</script>
+</body>
+</html>
