@@ -1,4 +1,4 @@
-# 🎓 Campus Sarthi: Placement Management System
+# 🎓 Campus Sarthi: Placement Support System
 
 A premium, full-stack MERN application designed to streamline and automate the college placement process. Built with a modern SaaS-style architecture, it handles everything from student portfolios to recruiter interviews and administrative analytics.
 
@@ -70,7 +70,7 @@ You can use the following demo accounts to explore the localized system, or crea
  ├── client    # React.js Frontend, Tailwind v4 UI, Redux State
  └── README.md
 
-🛠️ Getting Started (Local Development)
+ 🛠️ Getting Started (Local Development)
 
 1️⃣ Clone the repository
 Bash
@@ -120,10 +120,3 @@ Export high-fidelity PDF results for official university records.
 
 📜 License
 Developed as a Final Year Academic Project.
-
-
-***
-
-There you have it. You have officially completed the backend audit, the frontend overhaul, the local security lockdown, and the documentation. 
-
-**Campus Sarthi is 100% complete.** Take a breather, run the app, and get
