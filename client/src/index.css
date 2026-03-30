@@ -1,0 +1,6 @@
+@import 'tailwindcss';
+
+/* Apply the Inter font globally */
+body {
+  font-family: 'Inter', sans-serif;
+}
