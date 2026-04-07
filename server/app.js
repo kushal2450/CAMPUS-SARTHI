@@ -23,7 +23,7 @@ const app = express();
 
 // 1. CORS Configuration (Locked to local for security)
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    origin: ['http://localhost:5173', 'campussarthi.netlify.app'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Replaced 'UPDATE' with 'PATCH'
     credentials: true
 }));
