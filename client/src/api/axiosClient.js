@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
     // ✅ Locked exclusively to your local machine
-    baseURL: 'http://localhost:5000/api/v1', 
+    baseURL: 'https://campus-sarthi-apwa.onrender.com', 
     
     headers: {
         'Content-Type': 'application/json',
