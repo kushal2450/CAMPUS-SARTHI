@@ -74,7 +74,7 @@ You can use the following demo accounts to explore the localized system, or crea
 
 1️⃣ Clone the repository
 Bash
-git clone [https://github.com/YourUsername/Campus-Sarthi.git](https://github.com/YourUsername/Campus-Sarthi.git)
+git clone [https://github.com/kushal2450/Campus-Sarthi.git](https://github.com/kushal2450/Campus-Sarthi.git)
 cd Campus-Sarthi
 
 2️⃣ Setup Backend (Server)
